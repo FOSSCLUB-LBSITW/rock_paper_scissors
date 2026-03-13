@@ -1,11 +1,8 @@
-```javascript
 const game = () => {
 
     let playerScore = 0;
     let computerScore = 0;
     let roundsPlayed = 0;
-
-    // Best Of Mode
     let maxRounds = 10;
 
     const playerHistory = [];
@@ -166,7 +163,6 @@ const game = () => {
         scissors:'./images/scissors_hand.png'
     };
 
-    // START GAME + BEST OF MODE
     playBtn.addEventListener('click', () => {
 
         const bestOfSelect = document.getElementById("best-of-select");
@@ -355,66 +351,3 @@ const game = () => {
 };
 
 game();
-
-const bgMusic = new Audio("./sounds/background-music.mp3");
-bgMusic.loop = true;
-bgMusic.volume = 0.4;
-
-const startSound = new Audio("./sounds/start.mp3");
-const scoreSound = new Audio("./sounds/score.mp3");
-const highScoreSound = new Audio("./sounds/highscore.mp3");
-
-const musicToggle = document.getElementById("music-toggle");
-
-let musicEnabled = localStorage.getItem("musicEnabled") !== "false";
-
-if(musicEnabled){
-    bgMusic.play().catch(()=>{});
-    musicToggle.textContent="🔇 Music Off";
-}else{
-    musicToggle.textContent="🎵 Music On";
-}
-
-musicToggle.addEventListener("click",()=>{
-
-    musicEnabled=!musicEnabled;
-
-    if(musicEnabled){
-        bgMusic.play();
-        musicToggle.textContent="🔇 Music Off";
-    }else{
-        bgMusic.pause();
-        musicToggle.textContent="🎵 Music On";
-    }
-
-    localStorage.setItem("musicEnabled",musicEnabled);
-});
-
-const themeToggle=document.getElementById("theme-toggle");
-
-const savedTheme=localStorage.getItem("theme");
-
-if(savedTheme){
-    document.body.classList.add(savedTheme);
-}else{
-    document.body.classList.add("light-mode");
-}
-
-themeToggle.addEventListener("click",()=>{
-
-    if(document.body.classList.contains("light-mode")){
-
-        document.body.classList.remove("light-mode");
-        document.body.classList.add("dark-mode");
-        themeToggle.textContent="☀️ Light Mode";
-        localStorage.setItem("theme","dark-mode");
-
-    }else{
-
-        document.body.classList.remove("dark-mode");
-        document.body.classList.add("light-mode");
-        themeToggle.textContent="🌙 Dark Mode";
-        localStorage.setItem("theme","light-mode");
-    }
-});
-```
