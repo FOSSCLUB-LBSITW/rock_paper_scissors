@@ -184,7 +184,7 @@ const game = () => {
                 computerHand.style.animation = 'shakeComputer 1s ease forwards';
 
                 setTimeout(() => {
-                    const playerChoice = this.classList[0];
+                    const playerChoice = this.dataset.move;
                     const computerChoice = getComputerChoice();
                     playerHistory.push(playerChoice);
 
