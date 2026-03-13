@@ -72,6 +72,19 @@ const game = () => {
     const winSound = new Audio('./sounds/win.mp3');
     const loseSound = new Audio('./sounds/lose.mp3');
 
+    // Safe audio player utility
+    const playAudioSafe = (audioElement) => {
+        audioElement.currentTime = 0; // Reset sound to start
+        const playPromise = audioElement.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.warn("Audio playback prevented by browser:", error);
+                // Game continues without breaking
+            });
+        }
+    };
+
     // Preload default images
     ['rock_hand.png', 'paper_hand.png', 'scissors_hand.png'].forEach(
         img => (new Image().src = `./images/${img}`)
@@ -157,7 +170,7 @@ const game = () => {
                     btn.disabled = true;
                     btn.classList.add('opacity-75', 'cursor-not-allowed');
                 });
-                shakeSound.play();
+                playAudioSafe(shakeSound);
 
 
                 // Reset animations
@@ -216,11 +229,11 @@ const game = () => {
 
         if (wins[playerChoice] === computerChoice) {
             winnerDisplay.textContent = 'Player Wins!';
-            winSound.play();
+            playAudioSafe(winSound);
             playerScore++;
         } else {
             winnerDisplay.textContent = 'Computer Wins!';
-            loseSound.play();
+            playAudioSafe(loseSound);
             computerScore++;
         }
 
