@@ -8,15 +8,15 @@ const game = () => {
     const counters = { rock: 'paper', paper: 'scissors', scissors: 'rock' };
     const getDifficulty = () => document.querySelector('input[name="difficulty"]:checked')?.value ?? 'medium';
 
-    const getComputerChoice = (playerChoice) => {
+    const getComputerChoice = () => {
         const difficulty = getDifficulty();
         const getRandomMove = () => computerOptions[Math.floor(Math.random() * 3)];
 
-        // Easy difficulty: random
-        if (difficulty === 'easy') return getRandomMove();
+        // Easy difficulty or Turn 1: random
+        if (difficulty === 'easy' || playerHistory.length === 0) return getRandomMove();
 
-        // Analyze last 3 moves plus current to predict next move
-        const analysisPool = [...playerHistory.slice(-3), playerChoice];
+        // Analyze last 4 historical moves
+        const analysisPool = playerHistory.slice(-4);
         const frequencies = analysisPool.reduce((acc, move) => {
             acc[move] = (acc[move] || 0) + 1;
             return acc;
@@ -172,7 +172,7 @@ const game = () => {
 
                 setTimeout(() => {
                     const playerChoice = this.classList[0];
-                    const computerChoice = getComputerChoice(playerChoice);
+                    const computerChoice = getComputerChoice();
                     playerHistory.push(playerChoice);
 
                     // Player uses their custom image; computer uses the default set
