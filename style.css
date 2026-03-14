@@ -83,3 +83,7 @@ button:active {
     transform: scale(1);
   }
 }
+#best-of-select {
+    display: inline-block;
+    margin-left: 0.5rem;
+}

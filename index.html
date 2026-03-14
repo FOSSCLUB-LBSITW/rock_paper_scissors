@@ -49,16 +49,6 @@
                 <label><input type="radio" name="difficulty" value="medium" checked class="mr-1"> Medium</label>
                 <label><input type="radio" name="difficulty" value="hard" class="mr-1"> Hard</label>
             </div>
-            <!-- Best Of Mode -->
-    <div class="mb-6 text-center">
-        <label class="font-semibold mr-2">Best Of:</label>
-
-        <select id="best-of-select" class="border rounded px-3 py-1">
-            <option value="3">Best of 3</option>
-            <option value="5">Best of 5</option>
-            <option value="10" selected>Best of 10</option>
-        </select>
-    </div>
             <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-10 rounded-full text-xl shadow-md transition duration-300">Let's Play</button>
         </div>
 
@@ -67,7 +57,17 @@
     <h2 class="winner text-4xl font-bold mb-8 text-center text-pink-500">
         Choose your hand!
     </h2>
-
+    <label class="mt-4 block text-lg font-semibold text-center">
+  Best of:
+  <select id="best-of-select" class="ml-2 px-2 py-1 rounded border">
+    <option value="3">3</option>
+    <option value="5" selected>5</option>
+    <option value="7">7</option>
+    <option value="9">9</option>
+  </select>
+</label>
+<label class="mt-4 block text-lg font-semibold text-center">
+  
     <!-- Countdown -->
     <div id="countdown"
     class="hidden text-6xl font-extrabold text-pink-500 text-center mb-6">
@@ -83,6 +83,8 @@
         <button class="rock bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-300">Rock</button>
         <button class="paper bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-300">Paper</button>
         <button class="scissors bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-300">Scissors</button>
+      
+        </div>
     </div>
             <div class="flex justify-center mt-6">
     <button id="pause-btn"
